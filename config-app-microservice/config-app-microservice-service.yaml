@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-app-cs
+  labels:
+    app: config-app-pd
+spec:
+  ports:
+  - port: 10073
+    targetPort: 10073
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  selector:
+    app: config-app-pd
