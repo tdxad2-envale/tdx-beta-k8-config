@@ -1,0 +1,84 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    run: wildfly-pd
+  name: wildfly-pd
+  namespace: default
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      run: wildfly-pd
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: wildfly-pd
+        run: wildfly-pd
+    spec:
+      containers:
+        - image: gcr.io/sincere-blade-199211/jboss/wildfly-cloud:12.0.0
+          command:
+          - "/opt/jboss/wildfly/bin/standalone.sh"
+          args:
+          - "--server-config"
+          - "standalone-full.xml"
+          - "-b"
+          - "0.0.0.0"
+          - "-bmanagement"
+          - "0.0.0.0"  
+          env:
+          - name: "FTL_PATH"
+            value: "/opt"
+          - name: "TDAUX_APP_CONF"
+            value: "some-value"
+          - name: "CONF_CODE"
+            value: "some-value"
+          - name: "DB_USER"
+            value: tdxappuser
+            #valueFrom:
+            #  secretKeyRef:
+            #    name: cloudsql-db-credentials
+            #    key: username
+          - name: "DB_PASSWORD"
+            value: Caduceus$100B
+            #valueFrom:
+            #  secretKeyRef:
+            #    name: cloudsql-db-credentials
+            #    key: password    
+          imagePullPolicy: Always
+          name: wildfly-pd
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 9990
+            protocol: TCP
+        # Change <INSTANCE_CONNECTION_NAME> here to include your GCP
+        # project, the region of your Cloud SQL instance and the name
+        # of your Cloud SQL instance. The format is
+        # $PROJECT:$REGION:$INSTANCE
+        # [START proxy_container]
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.11
+          command: ["/cloud_sql_proxy",
+                    "-instances=sincere-blade-199211:asia-south1:tdaux-dev-instance=tcp:0.0.0.0:3306",
+                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+        # [END proxy_container]
+      # [START volumes]
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
+      # [END volumes]
+
