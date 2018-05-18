@@ -42,13 +42,13 @@ spec:
           - name: "CONF_CODE"
             value: "some-value"
           - name: "DB_USER"
-            value: tdxappuser
+            value: [username]
             #valueFrom:
             #  secretKeyRef:
             #    name: cloudsql-db-credentials
             #    key: username
           - name: "DB_PASSWORD"
-            value: Caduceus$100B
+            value: [password]
             #valueFrom:
             #  secretKeyRef:
             #    name: cloudsql-db-credentials
