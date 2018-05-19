@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    run: auction-bid-pd
+  name: auction-bid-pd
+  namespace: default
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      run: auction-bid-pd
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: auction-bid-pd
+        run: auction-bid-pd
+    spec:
+      containers:
+        - image: gcr.io/sincere-blade-199211/tdaux/auction-bid-engine:1.0.0       
+          imagePullPolicy: Always
+          name: auction-bid-pd
+          env :
+          - name: "KAFKA_HOST"
+            value: "$(KAFKA_CS_SERVICE_HOST)"
+          - name: "KAFKA_PORT"
+            value: "$(KAFKA_CS_PORT_9092_TCP_PORT)"
+          - name: "CONFIG_SERVER"
+            value: "$(CONFIG_APP_CS_SERVICE_HOST)"
+          - name: "CONFIG_CODE"
+            value: "$(CONFIG_APP_CS_PORT_11003_TCP_PORT)"
+          ports:
+          - containerPort: 8180
+            protocol: TCP
