@@ -17,6 +17,6 @@ Service name
 
 ```
 metadata:
-  name: auction-engine-cs
+  name: module-cs
 
 ```
