@@ -1,4 +1,4 @@
-#Creat configmap to mount configuration file
+# Creat configmap to mount configuration file
 
 ```
 kubectl create configmap flume-config --from-file=[FILE_1] --from-file=[FILE_2]
