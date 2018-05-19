@@ -17,6 +17,7 @@ Pre-defined ports to be used
 ## External Ports
 
 |Module | internal port | service port |
+|--- | --- | --- |
 | Admin Gateway | 8080 | TODO |
 | Admin Web | 8080 | TODO |
 | Mobile Gateway | 8080 | TODO |
