@@ -13,17 +13,24 @@ spec:
     spec:
       containers:
         - name: openfire
-          image: gcr.io/sincere-blade-199211/jboss/openfire-cloud 
+          image: gcr.io/sincere-blade-199211/jboss/openfire-cloud
+          resources:
+            requests:
+              memory: "1G"
+              cpu: "1G"
+            limits:
+              memory: "2G"
+              cpu: "1000m"
           env:
           - name: "DNS_DOMAIN"
-            value: "cluster.local"    
+            value: "cluster.local"
           - name: "HAZELCAST_KUBERNETES_SERVICE_DNS"
-            value: "openfire.default.svc.cluster.local" 
+            value: "openfire.default.svc.cluster.local"
           ports:
           - containerPort: 9090
             protocol: TCP
           - containerPort: 5222
-            protocol: TCP          
+            protocol: TCP
           - containerPort: 7070
             protocol: TCP
           - containerPort: 5005
@@ -50,5 +57,4 @@ spec:
         - name: cloudsql-instance-credentials
           secret:
             secretName: cloudsql-instance-credentials
-      # [END volumes] 
-
+      # [END volumes]

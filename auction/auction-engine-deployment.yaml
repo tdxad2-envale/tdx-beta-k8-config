@@ -7,7 +7,7 @@ metadata:
   name: auction-bid-pd
   namespace: default
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       run: auction-bid-pd
@@ -24,9 +24,16 @@ spec:
         run: auction-bid-pd
     spec:
       containers:
-        - image: gcr.io/sincere-blade-199211/tdaux/auction-bid-engine:1.0.0       
+        - image: gcr.io/sincere-blade-199211/tdaux/auction-bid-engine:1.0.0
           imagePullPolicy: Always
           name: auction-bid-pd
+          resources:
+            requests:
+              memory: "1G"
+              cpu: "500m"
+            limits:
+              memory: "2G"
+              cpu: "1000m"
           env :
           - name: "KAFKA_HOST"
             value: "$(KAFKA_CS_SERVICE_HOST)"

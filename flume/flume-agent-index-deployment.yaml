@@ -29,10 +29,10 @@ spec:
           name: flume-agent-index-pd
           resources:
             requests:
-              memory: "64M"
+              memory: "1G"
               cpu: "500m"
             limits:
-              memory: "512M"
+              memory: "2G"
               cpu: "1000m"
           env :
           - name: "CONF_FILE"

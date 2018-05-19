@@ -3,7 +3,7 @@ Beta configuration files for k8
 
 ## Naming convention
 ### Deployment yaml
-[Module]-deploy.yaml
+[Module]-deployment.yaml
 Deployment app name
 
 ```

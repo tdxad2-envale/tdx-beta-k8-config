@@ -7,7 +7,7 @@ metadata:
   name: config-app-pd
   namespace: default
 spec:
-  replicas: 1 
+  replicas: 1
   selector:
     matchLabels:
       run: config-app-pd
@@ -24,9 +24,16 @@ spec:
         run: config-app-pd
     spec:
       containers:
-        - image: gcr.io/sincere-blade-199211/tdaux/config-app-microservice:1.0.0           
+        - image: gcr.io/sincere-blade-199211/tdaux/config-app-microservice:1.0.0
           imagePullPolicy: Always
           name: config-app-pd
+          resources:
+            requests:
+              memory: "500M"
+              cpu: "500m"
+            limits:
+              memory: "1G"
+              cpu: "1000m"
           ports:
           - containerPort: 10073
             protocol: TCP

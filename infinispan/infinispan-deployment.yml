@@ -28,7 +28,7 @@ spec:
         - -Djboss.default.jgroups.stack=kubernetes
         env:
         - name: KUBERNETES_NAMESPACE
-          value: default            
+          value: default
         - name: MGMT_USER
           value: admin
         - name: MGMT_PASS
@@ -36,6 +36,13 @@ spec:
         image: jboss/infinispan-server:latest
         imagePullPolicy: Always
         name: infinispan-server
+        resources:
+          requests:
+            memory: "2G"
+            cpu: "500m"
+          limits:
+            memory: "4G"
+            cpu: "1000m"
         ports:
         - containerPort: 8080
           protocol: TCP
