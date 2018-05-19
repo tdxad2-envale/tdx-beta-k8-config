@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    run: infinispan-pd
+  name: infinispan-pd
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: infinispan-pd
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: infinispan-pd
+    spec:
+      containers:
+      - args:
+        - cloud
+        - -Djboss.default.jgroups.stack=kubernetes
+        env:
+        - name: KUBERNETES_NAMESPACE
+          value: default            
+        - name: MGMT_USER
+          value: admin
+        - name: MGMT_PASS
+          value: adminadmin
+        image: jboss/infinispan-server:latest
+        imagePullPolicy: Always
+        name: infinispan-server
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8181
+          protocol: TCP
+        - containerPort: 8888
+          protocol: TCP
+        - containerPort: 9990
+          protocol: TCP
+        - containerPort: 11211
+          protocol: TCP
+        - containerPort: 11222
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
