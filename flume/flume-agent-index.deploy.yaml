@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    run: flume-agent-index-pd
+  name: flume-agent-index-pd
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: flume-agent-index-pd
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: flume-agent-index-pd
+        run: flume-agent-index-pd
+    spec:
+      containers:
+        - image: gcr.io/sincere-blade-199211/tdaux/flume-agent-index:1.0.0
+          imagePullPolicy: Always
+          name: flume-agent-index-pd
+          resources:
+            requests:
+              memory: "64M"
+              cpu: "500m"
+            limits:
+              memory: "512M"
+              cpu: "1000m"
+          env :
+          - name: "CONF_FILE"
+            value: "/etc/conf/index.conf"
+          - name: "AGENT_NAME"
+            value: "flume-index-agent"
+          volumeMounts:
+            - name: "config-volume"
+              mountPath: "/etc/conf/index.conf"
+              subPath: "index.conf"
+      volumes:
+        - name: "config-volume"
+        configMap:
+          name: "flume-config"
