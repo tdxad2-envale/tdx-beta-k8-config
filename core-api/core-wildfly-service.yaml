@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wildfly-cs
+  name: core-api-cs
   labels:
-    app: wildfly-pd
+    app: core-api-ps
 spec:
   ports:
   - port: 8080
@@ -11,4 +11,4 @@ spec:
   type: ClusterIP
   sessionAffinity: ClientIP
   selector:
-    app: wildfly-pd
+    app: core-api-pd

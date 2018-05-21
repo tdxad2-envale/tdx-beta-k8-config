@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   annotations:
   labels:
-    run: wildfly-pd
-  name: wildfly-pd
+    run: core-api-pd
+  name: core-api-pd
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: wildfly-pd
+      run: core-api-pd
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -20,8 +20,8 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: wildfly-pd
-        run: wildfly-pd
+        app: core-api-pd
+        run: core-api-pd
     spec:
       containers:
         - image: gcr.io/[PROJECT_NAME]/tdaux/wildfly-cloud:12.0.0
@@ -54,7 +54,7 @@ spec:
             #    name: cloudsql-db-credentials
             #    key: password
           imagePullPolicy: Always
-          name: wildfly-pd
+          name: core-api-pd
           resources:
             requests:
               memory: "1G"
