@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: openfire
-  name: openfire
+    name: openfire-cs
+  name: openfire-cs
 spec:
   clusterIP: None
-  type: ClusterIP   
+  type: ClusterIP
   ports:
     - port: 5701
       targetPort: 5701

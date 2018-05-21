@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: openfire
+  name: openfire-pd
   labels:
-    app: openfire
+    app: openfire-pd
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: openfire
+        app: openfire-pd
     spec:
       containers:
-        - name: openfire
+        - name: openfire-pd
           image: gcr.io/[PROJECT_NAME]/tdaux/openfire-cloud
           resources:
             requests:
@@ -25,7 +25,7 @@ spec:
           - name: "DNS_DOMAIN"
             value: "cluster.local"
           - name: "HAZELCAST_KUBERNETES_SERVICE_DNS"
-            value: "openfire.default.svc.cluster.local"
+            value: "openfire-cs.default.svc.cluster.local"
           ports:
           - containerPort: 9090
             protocol: TCP

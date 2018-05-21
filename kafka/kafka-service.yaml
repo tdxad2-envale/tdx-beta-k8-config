@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: config-app-cs
+  name: kafka-cs
   labels:
-    app: config-app-cs
+    app: kafka-cs
 spec:
   ports:
   - port: 10073
@@ -11,4 +11,4 @@ spec:
   type: ClusterIP
   sessionAffinity: ClientIP
   selector:
-    app: config-app-pd
+    app: kafka-pd
