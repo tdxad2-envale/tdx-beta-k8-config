@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   annotations:
   labels:
-    run: mobile-gateway-pd
-  name: mobile-gateway-pd
+    run: tdaux-web-pd
+  name: tdaux-web-pd
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: mobile-gateway-pd
+      run: tdaux-web-pd
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -20,11 +20,11 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: mobile-gateway-pd
-        run: mobile-gateway-pd
+        app: tdaux-web-pd
+        run: tdaux-web-pd
     spec:
       containers:
-        - image: gcr.io/[PROJECT_NAME]/tdaux/mobile-gateway:1.0.0
+        - image: gcr.io/[PROJECT_NAME]/tdaux/tdaux-web:1.0.0
           command:
           - "/opt/jboss/wildfly/bin/standalone.sh"
           args:
@@ -40,7 +40,7 @@ spec:
           - name: "CONF_CODE"
             value: "some-value"
           imagePullPolicy: Always
-          name: mobile-gateway-pd
+          name: tdaux-web-pd
           resources:
             requests:
               memory: "1G"

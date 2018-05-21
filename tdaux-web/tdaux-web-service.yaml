@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tdaux-web-cs
+  labels:
+    app: tdaux-web-cs
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  selector:
+    app: tdaux-web-pd

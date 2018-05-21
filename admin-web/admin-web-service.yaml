@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-web-cs
+  labels:
+    app: admin-web-cs
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  selector:
+    app: admin-web-pd

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: core-api-cs
+  name: mobile-gateway-cs
   labels:
-    app: core-api-ps
+    app: mobile-gateway-cs
 spec:
   ports:
   - port: 8080
@@ -11,4 +11,4 @@ spec:
   type: ClusterIP
   sessionAffinity: ClientIP
   selector:
-    app: core-api-pd
+    app: mobile-gateway-pd

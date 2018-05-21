@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    run: admin-gateway-pd
+  name: admin-gateway-pd
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: admin-gateway-pd
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: admin-gateway-pd
+        run: admin-gateway-pd
+    spec:
+      containers:
+        - image: gcr.io/[PROJECT_NAME]/tdaux/admin-gateway:1.0.0
+          command:
+          - "/opt/jboss/wildfly/bin/standalone.sh"
+          args:
+          - "--server-config"
+          - "standalone-full.xml"
+          - "-b"
+          - "0.0.0.0"
+          - "-bmanagement"
+          - "0.0.0.0"
+          env:
+          - name: "TDAUX_APP_CONF"
+            value: "some-value"
+          - name: "CONF_CODE"
+            value: "some-value"
+          imagePullPolicy: Always
+          name: admin-gateway-pd
+          resources:
+            requests:
+              memory: "1G"
+              cpu: "500m"
+            limits:
+              memory: "2G"
+              cpu: "1000m"
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 9990
+            protocol: TCP
