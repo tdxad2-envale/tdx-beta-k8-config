@@ -22,4 +22,4 @@ Pre-defined ports to be used
 | Admin Web | 8080 | TODO |
 | Mobile Gateway | 8080 | TODO |
 | Openfire | 8080 | TODO |
-| Tdaux | 8080 | 80 |
+| Tdaux | 8080 | 80/443 |
