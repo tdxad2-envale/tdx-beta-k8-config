@@ -24,7 +24,7 @@ spec:
         run: config-app-pd
     spec:
       containers:
-        - image: gcr.io/sincere-blade-199211/tdaux/config-app-microservice:1.0.0
+        - image: gcr.io/[PROJECT_NAME]/tdaux/config-app-microservice:1.0.0
           imagePullPolicy: Always
           name: config-app-pd
           resources:

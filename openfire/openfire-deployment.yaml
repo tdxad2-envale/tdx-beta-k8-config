@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: openfire
-          image: gcr.io/sincere-blade-199211/jboss/openfire-cloud
+          image: gcr.io/[PROJECT_NAME]/tdaux/openfire-cloud
           resources:
             requests:
               memory: "1G"

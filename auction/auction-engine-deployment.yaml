@@ -24,7 +24,7 @@ spec:
         run: auction-bid-pd
     spec:
       containers:
-        - image: gcr.io/sincere-blade-199211/tdaux/auction-bid-engine:1.0.0
+        - image: gcr.io/[PROJECT_NAME]/tdaux/auction-bid-engine:1.0.0
           imagePullPolicy: Always
           name: auction-bid-pd
           resources:

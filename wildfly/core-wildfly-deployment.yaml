@@ -24,7 +24,7 @@ spec:
         run: wildfly-pd
     spec:
       containers:
-        - image: gcr.io/sincere-blade-199211/jboss/wildfly-cloud:12.0.0
+        - image: gcr.io/[PROJECT_NAME]/tdaux/wildfly-cloud:12.0.0
           command:
           - "/opt/jboss/wildfly/bin/standalone.sh"
           args:

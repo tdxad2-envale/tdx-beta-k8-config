@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   annotations:
   labels:
-    run: flume-agent-index-pd
-  name: flume-agent-index-pd
+    run: flume-agent-queryobject-pd
+  name: flume-agent-queryobject-pd
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: flume-agent-index-pd
+      run: flume-agent-queryobject-pd
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -20,13 +20,13 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: flume-agent-index-pd
-        run: flume-agent-index-pd
+        app: flume-agent-queryobject-pd
+        run: flume-agent-queryobject-pd
     spec:
       containers:
-        - image: gcr.io/[PROJECT_NAME]/tdaux/flume-agent-index:1.0.0
+        - image: gcr.io/[PROJECT_NAME]/tdaux/flume-agent-queryobject:1.0.0
           imagePullPolicy: Always
-          name: flume-agent-index-pd
+          name: flume-agent-queryobject-pd
           resources:
             requests:
               memory: "1G"
@@ -36,13 +36,13 @@ spec:
               cpu: "1000m"
           env :
           - name: "CONF_FILE"
-            value: "/etc/conf/index.conf"
+            value: "/etc/conf/queryobject.conf"
           - name: "AGENT_NAME"
-            value: "flume-index-agent"
+            value: "flume-queryobject-agent"
           volumeMounts:
             - name: "config-volume"
-              mountPath: "/etc/conf/index.conf"
-              subPath: "index.conf"
+              mountPath: "/etc/conf/queryobject.conf"
+              subPath: "queryobject.conf"
       volumes:
         - name: "config-volume"
         configMap:
