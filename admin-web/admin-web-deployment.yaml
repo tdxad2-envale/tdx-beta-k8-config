@@ -36,9 +36,9 @@ spec:
           - "0.0.0.0"
           env:
           - name: "TDAUX_APP_CONF"
-            value: "some-value"
+            value: "config-app-cs.default.svc.cluster.local:10073"
           - name: "CONF_CODE"
-            value: "some-value"
+            value: "E4AA38261FE04C4C9EB4B8A1465CDFA6"
           imagePullPolicy: Always
           name: admin-web-pd
           resources:
