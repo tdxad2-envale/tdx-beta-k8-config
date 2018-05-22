@@ -3,7 +3,7 @@ Pre-defined ports to be used
 
 ## Internal Ports
 
-|Module | internal port | service port |
+|Module | Internal port | Service port |
 |--- | --- | --- |
 | Config-app | 11003 | 11003 |
 | Core-API | 8080 | 8080 |
@@ -16,10 +16,10 @@ Pre-defined ports to be used
 
 ## External Ports
 
-|Module | internal port | service port |
+|Module | Internal port | Service port | Proxy uri
 |--- | --- | --- |
-| Admin Gateway | 8080 | TODO |
-| Admin Web | 8080 | TODO |
-| Mobile Gateway | 8080 | TODO |
-| Openfire | 8080 | TODO |
-| Tdaux | 8080 | 80/443 |
+| Admin Gateway | 8080 | 8181 | admin-gateway.tdaux.com:443
+| Admin Web | 8080 | 8281 | admin-web.tdaux.com:443
+| Mobile Gateway | 8080 | 8080 | mobile-gateway.tdaux.com:443
+| Openfire | 7070 | 7070 | openfire.tdaux.com:443
+| Tdaux | 8080 | 80 | www.tdaux.com:443
