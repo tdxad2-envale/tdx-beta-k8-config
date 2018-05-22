@@ -18,8 +18,8 @@ Pre-defined ports to be used
 
 |Module | Internal port | Service port | Proxy uri
 |--- | --- | --- |
-| Admin Gateway | 8080 | 8181 | admin-gateway.tdaux.com:443
-| Admin Web | 8080 | 8281 | admin-web.tdaux.com:443
-| Mobile Gateway | 8080 | 8080 | mobile-gateway.tdaux.com:443
+| Admin Gateway | 8080 | 8180 | admin-gateway.tdaux.com:443
+| Admin Web | 8080 | 8280 | admin-web.tdaux.com:443
+| Mobile Gateway | 8080 | 8380 | mobile-gateway.tdaux.com:443
 | Openfire | 7070 | 7070 | openfire.tdaux.com:443
-| Tdaux | 8080 | 80 | www.tdaux.com:443
+| Tdaux | 8080 | 8080 | www.tdaux.com:443
