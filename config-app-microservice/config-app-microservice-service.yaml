@@ -3,12 +3,13 @@ kind: Service
 metadata:
   name: config-app-cs
   labels:
-    app: config-app-cs
+    name: config-app-cs
 spec:
-  ports:
-  - port: 10073
-    targetPort: 10073
+  clusterIP: None
   type: ClusterIP
-  sessionAffinity: ClientIP
+  ports:
+    - name: cluster
+      port: 10073
+      targetPort: 10073
   selector:
     app: config-app-pd

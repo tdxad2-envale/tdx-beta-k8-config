@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: infinispan-cs
+  labels:
+    name: infinispan-cs
+spec:
+  clusterIP: None
+  type: ClusterIP
+  ports:
+  - name: hotrod
+    port: 11222
+    targetPort: 11222
+  - name: admin
+    port: 9990
+    targetPort: 9990
+  selector:
+    app: infinispan-pd
